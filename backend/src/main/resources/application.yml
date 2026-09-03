@@ -1,0 +1,23 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: shopsphere-backend
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb+srv://bhargavjetti2004_db_user:clkflqaC5x7S2NCL@cluster0.ppuh5m6.mongodb.net/shopsphere?retryWrites=true&w=majority}
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+shopsphere:
+  jwt:
+    secret: ${JWT_SECRET:shopsphereSuperSecretKeyThatIsAtLeast32BytesLongForHS256Security!}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000} # 24 hours
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME:fcnfv9ex}
+  api-key: ${CLOUDINARY_API_KEY:995843461936293}
+  api-secret: ${CLOUDINARY_API_SECRET:zWvQXONzKJIiidgkJh0iI9Xhgf0}
