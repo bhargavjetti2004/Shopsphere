@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { ShoppingBag, Heart, ShoppingCart, User, LogOut, Search } from 'lucide-react';
+import { ShoppingBag, Heart, ShoppingCart, User, LogOut, Search, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
+import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const { cartCount } = useCart();
   const { wishlistCount } = useWishlist();
+  const { theme, toggleTheme } = useTheme();
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
@@ -78,8 +80,8 @@ const Navbar = () => {
             style={{
               paddingRight: '2.5rem',
               borderRadius: 'var(--radius-full)',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.12)'
+              backgroundColor: 'var(--bg-input)',
+              border: '1px solid var(--border-color)'
             }}
           />
           <button
@@ -114,6 +116,11 @@ const Navbar = () => {
             </li>
           )}
           <li>
+            <button onClick={toggleTheme} className="nav-link" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }} title="Toggle Theme">
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          </li>
+          <li>
             <Link to="/wishlist" className="nav-link">
               <Heart size={20} />
               {wishlistCount > 0 && <span className="badge">{wishlistCount}</span>}
@@ -128,7 +135,7 @@ const Navbar = () => {
 
           {isAuthenticated ? (
             <li style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-              <Link to="/profile" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', background: 'rgba(255, 255, 255, 0.05)', padding: '0.4rem 0.85rem', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)' }}>
+              <Link to="/profile" className="nav-link" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', background: 'var(--bg-hover-overlay)', padding: '0.4rem 0.85rem', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)' }}>
                 <User size={18} color="var(--primary)" />
                 <span style={{ color: 'var(--text-main)', fontSize: '0.9rem' }}>{user.name.split(' ')[0]}</span>
               </Link>
