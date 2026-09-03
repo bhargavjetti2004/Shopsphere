@@ -165,3 +165,6 @@ Frontend will run on `http://localhost:5173`.
 - Integration with live payment gateways (Stripe / Razorpay).
 - Email notifications for order confirmations using Spring Mail.
 - Multi-currency support and localized discount coupons.
+
+frontend deploy:https://shopsphere-indol.vercel.app/
+
